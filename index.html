@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Assistant AI</title>
+    <meta name="description" content="Analyze Python code, understand errors, and explore suggested improvements.">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">⌘</div>
+            <div>
+                <h2>Code Assistant</h2>
+                <span>DEVELOPER TOOLS</span>
+            </div>
+        </div>
+
+        <div class="sidebar-section">
+            <p class="section-label">WORKSPACE</p>
+
+            <div class="nav-item active">
+                <span>⌘</span>
+                <span>Code Analyzer</span>
+            </div>
+
+            <div class="nav-item">
+                <span>◈</span>
+                <span>Code Statistics</span>
+            </div>
+
+            <div class="nav-item">
+                <span>⚙</span>
+                <span>Settings</span>
+            </div>
+        </div>
+
+        <div class="sidebar-bottom">
+            <div class="server-status">
+                <span class="status-dot"></span>
+                <div>
+                    <strong>Analyzer Online</strong>
+                    <small>Python engine active</small>
+                </div>
+            </div>
+
+            <p class="sidebar-version">CODE ASSISTANT AI · V3.0</p>
+        </div>
+
+    </aside>
+
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <p class="breadcrumb">Workspace / Analyzer</p>
+                <h1>Python Code Analyzer</h1>
+            </div>
+
+            <div class="topbar-right">
+                <span class="language-badge">● Python</span>
+                <div class="profile-icon">CA</div>
+            </div>
+        </header>
+
+
+        <section class="welcome">
+            <div>
+                <h2>Understand your code.</h2>
+                <p>
+                    Detect problems, understand errors and improve
+                    your Python programming skills.
+                </p>
+            </div>
+
+            <div class="welcome-icon">⌘</div>
+        </section>
+
+
+        <!-- CODE EDITOR -->
+
+        <section class="editor-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Code Editor</h2>
+                    <p>Write or paste your Python code below.</p>
+                </div>
+
+                <span class="file-label">● main.py</span>
+            </div>
+
+            <div class="editor">
+
+                <div class="editor-toolbar">
+                    <div class="editor-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <span class="editor-language">PYTHON 3</span>
+                </div>
+
+                <div class="code-area">
+                    <div id="lineNumbers" class="line-numbers">1</div>
+
+                    <textarea
+                        id="code"
+                        spellcheck="false"
+                        autocapitalize="off"
+                        autocomplete="off"
+                        placeholder="# Write your Python code here..."
+                    ></textarea>
+                </div>
+
+                <div class="editor-footer">
+                    <span id="lineCount">1 lines</span>
+                    <span id="charCount">0 characters</span>
+                    <span>UTF-8</span>
+                </div>
+
+            </div>
+
+
+            <div class="editor-actions">
+
+                <button id="analyze" class="analyze-button">
+                    ✦ Analyze Code →
+                </button>
+
+                <button id="clear" class="clear-button">
+                    Clear Editor
+                </button>
+
+                <button id="fixCode" class="fix-button" disabled>
+                    ✨ Fix Code
+                </button>
+
+                <span class="shortcut">CTRL + ENTER</span>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANALYSIS DASHBOARD -->
+
+        <section class="results-section">
+
+            <div class="section-heading">
+                <div>
+                    <h2>Analysis Dashboard</h2>
+                    <p>Detailed information about your code.</p>
+                </div>
+
+                <span id="analysisStatus" class="status-badge">
+                    Waiting for analysis
+                </span>
+            </div>
+
+
+            <div class="summary-grid">
+
+                <div class="summary-card">
+                    <div class="summary-icon error-icon">!</div>
+                    <div>
+                        <p>Errors</p>
+                        <h3 id="errorCount">0</h3>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon warning-icon">⚠</div>
+                    <div>
+                        <p>Warnings</p>
+                        <h3 id="warningCount">0</h3>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon info-icon">i</div>
+                    <div>
+                        <p>Suggestions</p>
+                        <h3 id="infoCount">0</h3>
+                    </div>
+                </div>
+
+                <div class="summary-card">
+                    <div class="summary-icon success-icon">✓</div>
+                    <div>
+                        <p>Code Status</p>
+                        <h3 id="codeStatus">Ready</h3>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- CODE STATISTICS -->
+
+            <div class="statistics-panel">
+
+                <div class="panel-heading">
+                    <h3>Code Statistics</h3>
+                    <span>OVERVIEW</span>
+                </div>
+
+                <div class="statistics-grid">
+
+                    <div class="stat-item">
+                        <span class="stat-symbol">▤</span>
+                        <div>
+                            <h3 id="totalLines">—</h3>
+                            <p>Total Lines</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-symbol">≡</span>
+                        <div>
+                            <h3 id="nonEmptyLines">—</h3>
+                            <p>Non-empty Lines</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-symbol">ƒ</span>
+                        <div>
+                            <h3 id="functionCount">—</h3>
+                            <p>Functions</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-symbol">◇</span>
+                        <div>
+                            <h3 id="classCount">—</h3>
+                            <p>Classes</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-symbol">⇄</span>
+                        <div>
+                            <h3 id="importCount">—</h3>
+                            <p>Imports</p>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DETECTED ISSUES -->
+
+            <div class="issues-panel">
+
+                <div class="panel-heading">
+                    <h3>Detected Issues</h3>
+                    <span id="issueTotal">0 ISSUES</span>
+                </div>
+
+                <div id="resultMessage" class="result-message">
+                    <span class="message-icon">✦</span>
+                    <span id="messageText">
+                        Your analysis results will appear here.
+                    </span>
+                </div>
+
+                <div id="issuesList" class="issues-list">
+
+                    <div class="empty-state">
+                        <div>⌕</div>
+                        <h3>No analysis yet</h3>
+                        <p>
+                            Enter your Python code and click Analyze Code.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOOP ANALYSIS -->
+
+            <div class="issues-panel">
+
+                <div class="panel-heading">
+                    <h3>Loop Analysis</h3>
+                    <span>FOR / WHILE</span>
+                </div>
+
+                <div id="loopsList" class="issues-list">
+
+                    <div class="empty-state">
+                        <div>↻</div>
+                        <h3>No loops analyzed</h3>
+                        <p>
+                            Loop information will appear here after analysis.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- FIXED CODE -->
+
+            <div id="fixPanel" class="fix-panel hidden">
+
+                <div class="panel-heading">
+                    <h3>Suggested Fixed Code</h3>
+                    <span>CODE IMPROVEMENTS</span>
+                </div>
+
+                <p class="fix-description" id="fixDescription">
+                    Review the suggested changes before using them.
+                </p>
+
+                <pre class="fixed-code"><code id="fixedCode"></code></pre>
+
+                <div id="fixChanges" class="fix-changes"></div>
+
+                <div class="fix-actions">
+
+                    <button id="applyFix" class="analyze-button">
+                        Apply to Editor
+                    </button>
+
+                    <button id="copyFix" class="clear-button">
+                        Copy Suggested Code
+                    </button>
+
+                </div>
+
+                <p class="fix-warning">
+                    Always review suggested changes before using them.
+                    Some programming errors require a decision from you.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <footer>
+            <p>Code Assistant AI © 2026</p>
+            <p>Built for developers who love solving problems.</p>
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
+
