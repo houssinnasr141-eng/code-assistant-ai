@@ -692,6 +692,14 @@ def analyze_python_code(code):
 # WEBSITE ROUTES
 # -----------------------------------------
 
+
+
+@app.route("/robots.txt")
+def robots_txt():
+    content = "User-agent: *\nAllow: /\n"
+    return content, 200, {"Content-Type": "text/plain; charset=utf-8"}
+
+
 @app.route("/")
 def home():
     return send_from_directory(".", "index.html")
